@@ -5,6 +5,9 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+/** Image de la maison seule (sans texte). Le texte "Gîte Périgord" est ajouté en HTML. */
+const LOGO_HOUSE = "/logo-no-bg.png";
+
 const navLinks = [
   { label: "Accueil", href: "#accueil" },
   { label: "Nos Logements", href: "#nos-logements" },
@@ -14,6 +17,42 @@ const navLinks = [
 
 const AIRBNB_PROFILE_URL =
   "https://www.airbnb.fr/users/profile/1465564265008672096?previous_page_name=PdpHomeMarketplace";
+
+/** Logo du site : maison + texte "Gîte Périgord" sur une ligne. Fond discret quand header transparent (logo non transparent). */
+function SiteLogo({ scrolled }: { scrolled: boolean }) {
+  const [useFallback, setUseFallback] = useState(false);
+  const textClass = cn(
+    "font-heading text-lg font-semibold whitespace-nowrap",
+    scrolled ? "text-foreground" : "text-[#5c4033]",
+  );
+  const wrapperClass = cn(
+    "flex items-center gap-2 rounded-lg px-2 py-1.5 transition-colors duration-300",
+    !scrolled && "bg-white/95 shadow-sm",
+  );
+  if (useFallback) {
+    return (
+      <span
+        className={cn(
+          "font-heading text-xl font-semibold",
+          scrolled ? "text-foreground" : "text-white",
+        )}
+      >
+        Gîtes Périgord
+      </span>
+    );
+  }
+  return (
+    <span className={wrapperClass}>
+      <img
+        src={LOGO_HOUSE}
+        alt=""
+        className="h-8 w-auto object-contain"
+        onError={() => setUseFallback(true)}
+      />
+      <span className={textClass}>Gîte Périgord</span>
+    </span>
+  );
+}
 
 /** Logo Airbnb (Bélo) – symbole officiel */
 function AirbnbLogo({ className }: { className?: string }) {
@@ -64,11 +103,11 @@ export function Header() {
         <Link
           href="#accueil"
           className={cn(
-            "font-heading text-xl font-semibold transition-colors duration-300",
+            "flex items-center gap-2 transition-colors duration-300",
             scrolled ? "text-foreground" : "text-white",
           )}
         >
-          Gîtes Périgord
+          <SiteLogo scrolled={scrolled} />
         </Link>
 
         <nav className="hidden md:flex md:items-center md:gap-8">
