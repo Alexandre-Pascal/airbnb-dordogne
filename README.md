@@ -64,6 +64,12 @@ Les images des gîtes sont dans `public/images/img-airbnb1/` et `img-airbnb2/`. 
 
 ---
 
+## À venir
+
+Il manque uniquement **le système d'envoi d'emails** pour que le formulaire de réservation soit pleinement fonctionnel (réception des demandes, confirmation, etc.). Le reste du site est opérationnel.
+
+---
+
 ## Déploiement
 
 Le projet est prêt pour un déploiement sur **Vercel** (ou tout hébergeur Node) :
