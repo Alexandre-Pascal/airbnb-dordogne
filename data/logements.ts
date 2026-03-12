@@ -40,7 +40,7 @@ export const logements: Logement[] = [
       { label: "Animaux acceptés", icon: "Dog" },
       { label: "Parking gratuit", icon: "Car" },
     ],
-    heroImage: "/images/img-airbnb1/750badad-1e27-4ca0-b2b1-37e5c00d48d6.avif",
+    heroImage: "/images/img-airbnb1/Gîte Sarlat Périgord Piscine 10m (1).avif",
   },
   {
     id: "la-maisonnette",
@@ -65,6 +65,6 @@ export const logements: Logement[] = [
       { label: "Animaux acceptés", icon: "Dog" },
       { label: "Abri voiture 1 place", icon: "Car" },
     ],
-    heroImage: "/images/img-airbnb2/981a3971-9af3-40b4-ad7d-18e262b3e77f.avif",
+    heroImage: "/images/img-airbnb2/Gîte Périgord Sarlat Piscine (4).avif",
   },
 ];

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Waves, TreePine } from "lucide-react";
 
-const PISCINE_IMAGE = "/images/img-airbnb1/d6f08344-c5d8-4d01-b1c2-fcbfdfd4b332.avif";
+// Piscine couverte chauffée 10 m – espaces communs
+const PISCINE_IMAGE = "/images/img-airbnb1/Gîte Sarlat Périgord Piscine Couverte (4).avif";
 
 export function ExperienceSection() {
   return (
