@@ -64,9 +64,16 @@ Les images des gîtes sont dans `public/images/img-airbnb1/` et `img-airbnb2/`. 
 
 ---
 
-## À venir
+## Envoi d'emails (réservation)
 
-Il manque uniquement **le système d'envoi d'emails** pour que le formulaire de réservation soit pleinement fonctionnel (réception des demandes, confirmation, etc.). Le reste du site est opérationnel.
+Le formulaire envoie les demandes par email via **Resend**. En local, créez un fichier `.env.local` (ou renommez `.env.dev` en `.env.local`) avec :
+
+- `RESEND_API_KEY` — clé API Resend (compte sur [resend.com](https://resend.com))
+- `RESERVATION_EMAIL` — adresse qui reçoit les demandes (ex. `locationlagreze@gmail.com`)
+- `FROM_NAME` — (optionnel) nom affiché comme expéditeur (défaut : « Gîtes Périgord »)
+- `FROM_EMAIL` — (optionnel) adresse expéditrice ; sans domaine vérifié dans Resend, seule `onboarding@resend.dev` est utilisée ; après vérification de votre domaine, mettez ex. `contact@votredomaine.fr`
+
+Sur **Vercel** : ajoutez les mêmes variables dans **Project → Settings → Environment Variables** pour que l'envoi fonctionne en production.
 
 ---
 
@@ -75,7 +82,7 @@ Il manque uniquement **le système d'envoi d'emails** pour que le formulaire de 
 Le projet est prêt pour un déploiement sur **Vercel** (ou tout hébergeur Node) :
 
 - Build : `npm run build`
-- Aucune variable d’environnement requise pour le site actuel (formulaire en démo, pas d’envoi d’email côté serveur)
+- Variables d'environnement : `RESEND_API_KEY` et `RESERVATION_EMAIL` pour l'envoi des demandes de réservation.
 
 ---
 

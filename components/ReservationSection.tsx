@@ -25,6 +25,8 @@ export function ReservationSection() {
   const [range, setRange] = useState<DateRange | undefined>();
   const [rangeError, setRangeError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -76,10 +78,37 @@ export function ReservationSection() {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (range?.from && range?.to && !isRangeValid) return;
-    setSubmitted(true);
+    setSubmitError(null);
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/reservation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || undefined,
+          logement: formData.logement,
+          guests: formData.guests || undefined,
+          message: formData.message || undefined,
+          dateFrom: range?.from?.toISOString(),
+          dateTo: range?.to?.toISOString(),
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setSubmitError(data.error ?? "Une erreur est survenue. Réessayez ou contactez-nous par téléphone.");
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Impossible d'envoyer la demande. Vérifiez votre connexion ou contactez-nous par téléphone.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -242,13 +271,21 @@ export function ReservationSection() {
                   Les dates sélectionnées dans le calendrier à gauche seront
                   associées à votre demande.
                 </p>
+                {submitError && (
+                  <p className="text-sm font-medium text-destructive">
+                    {submitError}
+                  </p>
+                )}
                 <Button
                   type="submit"
                   size="lg"
                   className="rounded-full"
-                  disabled={range?.from && range?.to ? !isRangeValid : false}
+                  disabled={
+                    (range?.from && range?.to ? !isRangeValid : false) ||
+                    isSubmitting
+                  }
                 >
-                  Envoyer la demande
+                  {isSubmitting ? "Envoi en cours…" : "Envoyer la demande"}
                 </Button>
               </form>
             )}
