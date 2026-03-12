@@ -27,6 +27,12 @@ export type ReservationPayload = {
 function validatePayload(body: unknown): body is ReservationPayload {
   if (!body || typeof body !== "object") return false;
   const b = body as Record<string, unknown>;
+  const guestsOk =
+    typeof b.guests === "string" &&
+    b.guests.trim().length > 0 &&
+    !Number.isNaN(Number(b.guests)) &&
+    Number(b.guests) >= 1 &&
+    Number(b.guests) <= 8;
   return (
     typeof b.name === "string" &&
     b.name.trim().length > 0 &&
@@ -34,6 +40,7 @@ function validatePayload(body: unknown): body is ReservationPayload {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.email) &&
     typeof b.logement === "string" &&
     b.logement.trim().length > 0 &&
+    guestsOk &&
     typeof b.dateFrom === "string" &&
     typeof b.dateTo === "string"
   );
@@ -203,7 +210,7 @@ export async function POST(request: Request) {
 
   if (!validatePayload(body)) {
     return NextResponse.json(
-      { error: "Données invalides (nom, email, logement et dates requis)." },
+      { error: "Données invalides (nom, email, logement, nombre de voyageurs et dates requis)." },
       { status: 400 },
     );
   }

@@ -245,6 +245,7 @@ export function ReservationSection() {
                       type="number"
                       min={1}
                       max={8}
+                      required
                       value={formData.guests}
                       onChange={(e) =>
                         setFormData((p) => ({ ...p, guests: e.target.value }))
