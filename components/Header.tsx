@@ -22,6 +22,15 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setOpen(false);
+    if (href.startsWith("#") && window.location.hash === href) {
+      e.preventDefault();
+      const id = href.slice(1);
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header
       className={cn(
@@ -51,7 +60,7 @@ export function Header() {
                   ? "text-foreground/80 hover:text-foreground"
                   : "text-white/90 hover:text-white"
               )}
-              onClick={() => setOpen(false)}
+              onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.label}
             </Link>
@@ -102,14 +111,14 @@ export function Header() {
                     ? "text-foreground hover:bg-muted"
                     : "text-white hover:bg-white/10"
                 )}
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
               </Link>
             ))}
             <Link
               href="#reserver"
-              onClick={() => setOpen(false)}
+              onClick={(e) => handleNavClick(e, "#reserver")}
               className={cn(
                 "mt-2 inline-flex h-9 w-full items-center justify-center rounded-full px-6 text-sm font-medium transition-colors",
                 scrolled
