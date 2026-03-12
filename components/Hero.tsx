@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { handleAnchorClick } from "@/lib/utils";
 
 // Grande photo piscine couverte / vue domaine (la plus spectaculaire)
 const HERO_IMAGE =
@@ -9,7 +12,7 @@ export function Hero() {
   return (
     <section
       id="accueil"
-      className="relative flex min-h-[90vh] items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0">
         <Image
@@ -18,7 +21,7 @@ export function Hero() {
           fill
           className="object-cover"
           priority
-          sizes="100vw"
+          sizes="105vw"
         />
         <div className="absolute inset-0 bg-foreground/40" />
       </div>
@@ -33,6 +36,7 @@ export function Hero() {
         <div className="mt-10">
           <Link
             href="#nos-logements"
+            onClick={(e) => handleAnchorClick(e, "#nos-logements")}
             className="inline-flex h-11 items-center justify-center rounded-full bg-white px-8 text-base font-medium text-foreground transition-colors hover:bg-white/90"
           >
             Découvrir nos logements

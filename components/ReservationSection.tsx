@@ -102,7 +102,7 @@ export function ReservationSection() {
             <p className="mt-1 text-sm text-muted-foreground">
               Arrivée et départ le samedi (séjour minimum 7 nuits)
             </p>
-            <div className="mt-4 w-full sm:w-auto overflow-hidden rounded-xl border border-border p-4">
+            <div className="mt-4 w-full sm:w-auto rounded-xl border border-border p-4">
               <Calendar
                 mode="range"
                 selected={range}

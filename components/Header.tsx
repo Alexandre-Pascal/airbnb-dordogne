@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, handleAnchorClick } from "@/lib/utils";
 
 /** Image de la maison seule (sans texte). Le texte "Gîte Périgord" est ajouté en HTML. */
 const LOGO_HOUSE = "/logo-no-bg.png";
@@ -83,11 +83,7 @@ export function Header() {
     href: string,
   ) => {
     setOpen(false);
-    if (href.startsWith("#") && window.location.hash === href) {
-      e.preventDefault();
-      const id = href.slice(1);
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }
+    handleAnchorClick(e, href);
   };
 
   return (
@@ -102,6 +98,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="#accueil"
+          onClick={(e) => handleAnchorClick(e, "#accueil")}
           className={cn(
             "flex items-center gap-2 transition-colors duration-300",
             scrolled ? "text-foreground" : "text-white",

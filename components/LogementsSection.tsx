@@ -30,6 +30,7 @@ import {
   type GalleryImage,
 } from "@/data/gallery-images";
 import { encodedImageSrc } from "@/lib/image-utils";
+import { handleAnchorClick } from "@/lib/utils";
 
 const PREVIEW_COUNT = 8;
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -221,6 +222,7 @@ export function LogementsSection() {
                   </a>
                   <Link
                     href="#reserver"
+                    onClick={(e) => handleAnchorClick(e, "#reserver")}
                     className="inline-flex h-11 min-h-11 sm:h-10 sm:min-h-0 flex-1 sm:flex-initial items-center justify-center gap-2 rounded-full border-2 border-foreground/20 bg-transparent px-5 text-sm font-medium text-foreground hover:bg-foreground/5 transition-colors"
                   >
                     <Send className="h-4 w-4 shrink-0" />
@@ -300,6 +302,7 @@ export function LogementsSection() {
                   </a>
                   <Link
                     href="#reserver"
+                    onClick={(e) => handleAnchorClick(e, "#reserver")}
                     className="inline-flex h-11 min-h-11 sm:h-10 sm:min-h-0 flex-1 sm:flex-initial items-center justify-center gap-2 rounded-full border-2 border-foreground/20 bg-transparent px-5 text-sm font-medium text-foreground hover:bg-foreground/5 transition-colors"
                   >
                     <Send className="h-4 w-4 shrink-0" />
