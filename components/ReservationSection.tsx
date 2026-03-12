@@ -107,7 +107,7 @@ export function ReservationSection() {
             <p className="mt-1 text-sm text-muted-foreground">
               Arrivée et départ le samedi (séjour minimum 7 nuits)
             </p>
-            <div className="mt-4 w-full sm:w-auto rounded-xl border border-border p-4 max-sm:max-h-[min(20rem,60vh)] max-sm:overflow-y-auto max-sm:overscroll-contain">
+            <div className="mt-4 w-full rounded-xl border border-border p-4 max-sm:max-h-[min(20rem,60vh)] max-sm:overflow-y-auto max-sm:overscroll-contain">
               <Calendar
                 mode="range"
                 selected={range}
@@ -115,7 +115,7 @@ export function ReservationSection() {
                 locale={fr}
                 numberOfMonths={1}
                 disabled={isDateDisabled}
-                className="max-sm:[--cell-size:1.25rem]"
+                className="w-full sm:w-full max-sm:[--cell-size:1.25rem] sm:[--cell-size:2.25rem]"
               />
             </div>
             {rangeError && (
