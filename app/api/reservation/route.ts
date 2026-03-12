@@ -43,13 +43,12 @@ function validatePayload(body: unknown): body is ReservationPayload {
 const emailStyles = {
   wrapper:
     "margin:0;padding:0;background-color:#f1f5f9;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:16px;line-height:1.6;color:#1e293b;",
-  container:
-    "max-width:560px;margin:0 auto;padding:32px 24px;",
-  card:
-    "background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(15,23,42,0.08);",
+  container: "max-width:560px;margin:0 auto;padding:32px 24px;",
+  card: "background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(15,23,42,0.08);",
   headerBg: "background:#0f172a;",
   headerPadding: "padding:28px 32px;",
-  title: "margin:0;font-size:22px;font-weight:600;color:#ffffff;letter-spacing:0.02em;",
+  title:
+    "margin:0;font-size:22px;font-weight:600;color:#ffffff;letter-spacing:0.02em;",
   subtitle: "margin:6px 0 0;font-size:14px;color:rgba(255,255,255,0.85);",
   bodyPadding: "padding:28px 32px;",
   label:
@@ -158,7 +157,7 @@ function buildConfirmationEmailHtml(p: ReservationPayload): string {
         <p style="margin:0 0 20px;">Nous avons bien reçu votre demande de réservation pour <strong style="${emailStyles.highlight}">${escapeHtml(p.logement)}</strong> du <strong>${escapeHtml(dateFrom)}</strong> au <strong>${escapeHtml(dateTo)}</strong>.</p>
         <p style="margin:0 0 24px;">Nous vous recontacterons très prochainement par email pour confirmer la disponibilité, le tarif exact et les modalités de votre séjour.</p>
         <hr style="${emailStyles.divider}"/>
-        <p style="margin:0;font-size:15px;">À bientôt en Dordogne,<br/><strong>L'équipe des Gîtes Périgord Noir</strong></p>
+        <p style="margin:0;font-size:15px;">À bientôt en Dordogne,<br/><strong>Sophie</strong></p>
       </div>
       <div style="${emailStyles.footer}">
         Saint-Martial-de-Nabirat · Périgord Noir
@@ -182,13 +181,13 @@ export async function POST(request: Request) {
   if (!process.env.RESEND_API_KEY) {
     return NextResponse.json(
       { error: "Configuration serveur : RESEND_API_KEY manquante." },
-      { status: 500 }
+      { status: 500 },
     );
   }
   if (!to) {
     return NextResponse.json(
       { error: "Configuration serveur : RESERVATION_EMAIL manquante." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -198,14 +197,14 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json(
       { error: "Corps de la requête invalide." },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   if (!validatePayload(body)) {
     return NextResponse.json(
       { error: "Données invalides (nom, email, logement et dates requis)." },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -223,8 +222,11 @@ export async function POST(request: Request) {
     if (ownerResult.error) {
       console.error("Resend owner email error:", ownerResult.error);
       return NextResponse.json(
-        { error: "Échec de l'envoi. Veuillez réessayer ou nous contacter par téléphone." },
-        { status: 502 }
+        {
+          error:
+            "Échec de l'envoi. Veuillez réessayer ou nous contacter par téléphone.",
+        },
+        { status: 502 },
       );
     }
 
@@ -245,7 +247,7 @@ export async function POST(request: Request) {
     console.error("Reservation API error:", err);
     return NextResponse.json(
       { error: "Erreur serveur. Veuillez réessayer plus tard." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
