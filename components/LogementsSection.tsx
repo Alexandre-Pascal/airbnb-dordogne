@@ -209,19 +209,19 @@ export function LogementsSection() {
                     );
                   })}
                 </div>
-                <div className="mt-8 flex flex-nowrap items-center gap-3 overflow-x-auto pb-1">
+                <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                   <a
                     href={logements[0].airbnbUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex shrink-0 h-10 items-center justify-center gap-2 rounded-full bg-[#FF5A5F] px-5 text-sm font-medium text-white hover:bg-[#E00007] transition-colors"
+                    className="inline-flex h-10 flex-1 sm:flex-initial items-center justify-center gap-2 rounded-full bg-[#FF5A5F] px-5 text-sm font-medium text-white hover:bg-[#E00007] transition-colors"
                   >
                     <ExternalLink className="h-4 w-4" />
                     Réserver sur Airbnb – Les Glycines
                   </a>
                   <Link
                     href="#reserver"
-                    className="inline-flex shrink-0 h-10 items-center justify-center gap-2 rounded-full border-2 border-foreground/20 bg-transparent px-5 text-sm font-medium text-foreground hover:bg-foreground/5 transition-colors"
+                    className="inline-flex h-10 flex-1 sm:flex-initial items-center justify-center gap-2 rounded-full border-2 border-foreground/20 bg-transparent px-5 text-sm font-medium text-foreground hover:bg-foreground/5 transition-colors"
                   >
                     <Send className="h-4 w-4" />
                     Réservation directe
@@ -288,19 +288,19 @@ export function LogementsSection() {
                     );
                   })}
                 </div>
-                <div className="mt-8 flex flex-nowrap items-center gap-3 overflow-x-auto pb-1">
+                <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                   <a
                     href={logements[1].airbnbUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex shrink-0 h-10 items-center justify-center gap-2 rounded-full bg-[#FF5A5F] px-5 text-sm font-medium text-white hover:bg-[#E00007] transition-colors"
+                    className="inline-flex h-10 flex-1 sm:flex-initial items-center justify-center gap-2 rounded-full bg-[#FF5A5F] px-5 text-sm font-medium text-white hover:bg-[#E00007] transition-colors"
                   >
                     <ExternalLink className="h-4 w-4" />
                     Réserver sur Airbnb – La Maisonnette
                   </a>
                   <Link
                     href="#reserver"
-                    className="inline-flex shrink-0 h-10 items-center justify-center gap-2 rounded-full border-2 border-foreground/20 bg-transparent px-5 text-sm font-medium text-foreground hover:bg-foreground/5 transition-colors"
+                    className="inline-flex h-10 flex-1 sm:flex-initial items-center justify-center gap-2 rounded-full border-2 border-foreground/20 bg-transparent px-5 text-sm font-medium text-foreground hover:bg-foreground/5 transition-colors"
                   >
                     <Send className="h-4 w-4" />
                     Réservation directe

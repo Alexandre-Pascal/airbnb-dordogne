@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { format } from "date-fns";
+import { format, differenceInDays, addDays, isSaturday } from "date-fns";
 import { fr } from "date-fns/locale";
 import type { DateRange } from "react-day-picker";
 import { Calendar } from "@/components/ui/calendar";
@@ -19,8 +19,11 @@ import {
 import { logements } from "@/data/logements";
 import { cn } from "@/lib/utils";
 
+const MIN_NIGHTS = 7;
+
 export function ReservationSection() {
   const [range, setRange] = useState<DateRange | undefined>();
+  const [rangeError, setRangeError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -31,8 +34,47 @@ export function ReservationSection() {
     message: "",
   });
 
+  const nights =
+    range?.from && range?.to
+      ? differenceInDays(range.to, range.from)
+      : 0;
+  const isRangeValid = nights >= MIN_NIGHTS;
+
+  const handleRangeSelect = (newRange: DateRange | undefined) => {
+    setRangeError(null);
+    if (!newRange?.from) {
+      setRange(newRange);
+      return;
+    }
+    if (!isSaturday(newRange.from)) {
+      setRangeError("La date d'arrivée doit être un samedi.");
+      return;
+    }
+    if (newRange.to) {
+      if (!isSaturday(newRange.to)) {
+        setRange({ from: newRange.from, to: undefined });
+        setRangeError("La date de départ doit être un samedi.");
+        return;
+      }
+      const n = differenceInDays(newRange.to, newRange.from);
+      if (n < MIN_NIGHTS) {
+        setRange({ from: newRange.from, to: undefined });
+        setRangeError(`Séjour minimum : ${MIN_NIGHTS} nuits (samedi au samedi). Choisissez le samedi suivant ou plus.`);
+        return;
+      }
+    }
+    setRange(newRange);
+  };
+
+  const isDateDisabled = (date: Date) => {
+    if (!range?.from) return !isSaturday(date);
+    const minTo = addDays(range.from, MIN_NIGHTS);
+    return !isSaturday(date) || date < minTo || date.getTime() === range.from.getTime();
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (range?.from && range?.to && !isRangeValid) return;
     setSubmitted(true);
   };
 
@@ -47,7 +89,7 @@ export function ReservationSection() {
             Demande de réservation
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
-            Séjour minimum : 7 nuits. Sélectionnez vos dates. Ce formulaire
+            Séjour minimum : 7 nuits, uniquement du samedi au samedi. Ce formulaire
             constitue une demande de réservation. Nous vous recontacterons par
             email pour confirmer la disponibilité, le tarif exact et vous
             transmettre notre RIB pour bloquer votre séjour par virement.
@@ -58,21 +100,26 @@ export function ReservationSection() {
           <div className="lg:col-span-2">
             <Label className="text-base font-medium">Vos dates</Label>
             <p className="mt-1 text-sm text-muted-foreground">
-              Choisissez votre date d&apos;arrivée et de départ (séjour minimum 7
-              nuits)
+              Arrivée et départ le samedi (séjour minimum 7 nuits)
             </p>
             <Calendar
               mode="range"
               selected={range}
-              onSelect={setRange}
+              onSelect={handleRangeSelect}
               locale={fr}
               numberOfMonths={1}
-              className="mt-4 rounded-xl border border-border p-4"
+              disabled={isDateDisabled}
+              className="mt-4 w-full sm:w-auto rounded-xl border border-border p-4"
             />
-            {range?.from && (
+            {rangeError && (
+              <p className="mt-3 text-sm text-destructive font-medium">
+                {rangeError}
+              </p>
+            )}
+            {range?.from && !rangeError && (
               <p className="mt-4 text-sm text-muted-foreground">
                 {range.to
-                  ? `${format(range.from, "d MMMM yyyy", { locale: fr })} – ${format(range.to, "d MMMM yyyy", { locale: fr })}`
+                  ? `${format(range.from, "d MMMM yyyy", { locale: fr })} – ${format(range.to, "d MMMM yyyy", { locale: fr })} (${nights} nuit${nights > 1 ? "s" : ""})`
                   : format(range.from, "d MMMM yyyy", { locale: fr })}
               </p>
             )}
@@ -188,7 +235,12 @@ export function ReservationSection() {
                   Les dates sélectionnées dans le calendrier à gauche seront
                   associées à votre demande.
                 </p>
-                <Button type="submit" size="lg" className="rounded-full">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="rounded-full"
+                  disabled={range?.from && range?.to ? !isRangeValid : false}
+                >
                   Envoyer la demande
                 </Button>
               </form>

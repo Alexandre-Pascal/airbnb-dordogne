@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Mail, Phone, Facebook, Instagram } from "lucide-react";
+import { MapPin, Mail, Phone, Facebook } from "lucide-react";
 
 export function Footer() {
   return (
@@ -49,13 +49,6 @@ export function Footer() {
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="text-muted-foreground transition-colors hover:text-foreground"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
               </a>
             </div>
           </div>
