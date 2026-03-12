@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { Waves, TreePine } from "lucide-react";
+import { encodedImageSrc } from "@/lib/image-utils";
 
-// Piscine couverte chauffée 10 m – espaces communs
 const PISCINE_IMAGE = "/images/img-airbnb1/Gîte Sarlat Périgord Piscine Couverte (4).avif";
+const JARDIN_IMAGE = "/images/img-airbnb1/4ef9aa2b-c5bc-46af-9733-1375a3f2de97.avif";
 
 export function ExperienceSection() {
   return (
@@ -25,7 +26,7 @@ export function ExperienceSection() {
           <div className="overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-foreground/5">
             <div className="relative aspect-[16/10]">
               <Image
-                src={PISCINE_IMAGE}
+                src={encodedImageSrc(PISCINE_IMAGE)}
                 alt="Piscine couverte chauffée 10 m"
                 fill
                 className="object-cover"
@@ -52,6 +53,15 @@ export function ExperienceSection() {
           </div>
 
           <div className="overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-foreground/5">
+            <div className="relative aspect-[16/10]">
+              <Image
+                src={JARDIN_IMAGE}
+                alt="Jardin privatif sans vis-à-vis"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
             <div className="p-8 sm:p-10">
               <div className="flex items-center gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">

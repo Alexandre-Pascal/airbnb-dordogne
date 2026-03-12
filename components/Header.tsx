@@ -32,7 +32,10 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="#accueil"
-          className="font-heading text-xl font-semibold text-foreground"
+          className={cn(
+            "font-heading text-xl font-semibold transition-colors duration-300",
+            scrolled ? "text-foreground" : "text-white"
+          )}
         >
           Gîtes Périgord
         </Link>
@@ -42,7 +45,12 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+              className={cn(
+                "text-sm font-medium transition-colors duration-300",
+                scrolled
+                  ? "text-foreground/80 hover:text-foreground"
+                  : "text-white/90 hover:text-white"
+              )}
               onClick={() => setOpen(false)}
             >
               {link.label}
@@ -50,7 +58,12 @@ export function Header() {
           ))}
           <Link
             href="#reserver"
-            className="inline-flex h-8 items-center justify-center rounded-full bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className={cn(
+              "inline-flex h-8 items-center justify-center rounded-full px-4 text-sm font-medium transition-all duration-300",
+              scrolled
+                ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                : "bg-white text-foreground hover:bg-white/90"
+            )}
           >
             Réserver
           </Link>
@@ -58,7 +71,10 @@ export function Header() {
 
         <button
           type="button"
-          className="md:hidden flex items-center justify-center p-2 text-foreground"
+          className={cn(
+            "md:hidden flex items-center justify-center p-2 transition-colors duration-300",
+            scrolled ? "text-foreground" : "text-white"
+          )}
           onClick={() => setOpen(!open)}
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
         >
@@ -67,13 +83,25 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border bg-background/98 backdrop-blur-md">
+        <div
+          className={cn(
+            "md:hidden border-t backdrop-blur-md",
+            scrolled
+              ? "border-border bg-background/98"
+              : "border-white/20 bg-black/40"
+          )}
+        >
           <nav className="flex flex-col gap-1 px-4 py-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-lg px-4 py-3 text-sm font-medium text-foreground hover:bg-muted"
+                className={cn(
+                  "rounded-lg px-4 py-3 text-sm font-medium transition-colors",
+                  scrolled
+                    ? "text-foreground hover:bg-muted"
+                    : "text-white hover:bg-white/10"
+                )}
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -82,7 +110,12 @@ export function Header() {
             <Link
               href="#reserver"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex h-9 w-full items-center justify-center rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              className={cn(
+                "mt-2 inline-flex h-9 w-full items-center justify-center rounded-full px-6 text-sm font-medium transition-colors",
+                scrolled
+                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                  : "bg-white text-foreground hover:bg-white/90"
+              )}
             >
               Réserver
             </Link>
