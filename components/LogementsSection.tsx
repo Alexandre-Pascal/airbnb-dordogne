@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -17,12 +17,15 @@ import {
   DoorOpen,
   Bath,
   X,
+  ChevronLeft,
+  ChevronRight,
+  Grid3X3,
 } from "lucide-react";
 import { logements } from "@/data/logements";
 import { galleryGite1, galleryGite2, type GalleryImage } from "@/data/gallery-images";
 import { encodedImageSrc } from "@/lib/image-utils";
-import { cn } from "@/lib/utils";
 
+const PREVIEW_COUNT = 8;
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   TreePine,
   Flame,
@@ -35,50 +38,96 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Shirt,
 };
 
-function LogementGallery({
+type GiteNum = 1 | 2;
+
+/** Grille épurée pleine largeur : 8 images. La lightbox n’affiche que les photos de ce gîte. */
+function PreviewGrid({
+  gite,
   images,
-  startIndex,
-  onOpen,
+  onOpenAt,
+  onViewAll,
+  viewAllLabel,
 }: {
+  gite: GiteNum;
   images: GalleryImage[];
-  startIndex: number;
-  onOpen: (index: number) => void;
+  onOpenAt: (gite: GiteNum, index: number) => void;
+  onViewAll: (gite: GiteNum) => void;
+  viewAllLabel: string;
 }) {
+  const preview = images.slice(0, PREVIEW_COUNT);
   return (
-    <div className="columns-2 gap-3 sm:columns-3 lg:columns-4 lg:gap-4">
-      {images.map((img, i) => (
-        <button
-          key={i}
-          type="button"
-          className="group relative mb-3 block w-full overflow-hidden rounded-xl lg:mb-4"
-          onClick={() => onOpen(startIndex + i)}
-        >
-          <div className="relative aspect-[4/3] w-full">
+    <div className="mt-12 w-full">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        {preview.map((img, i) => (
+          <button
+            key={i}
+            type="button"
+            className="group relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-muted focus:outline-none focus:ring-2 focus:ring-ring"
+            onClick={() => onOpenAt(gite, i)}
+          >
             <Image
               src={encodedImageSrc(img.src)}
               alt={img.alt}
               fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              className="object-cover transition duration-300 group-hover:scale-105"
+              sizes="(max-width: 640px) 50vw, 25vw"
               unoptimized
             />
-          </div>
-        </button>
-      ))}
+          </button>
+        ))}
+      </div>
+      <button
+        type="button"
+        onClick={() => onViewAll(gite)}
+        className="mt-6 flex items-center justify-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <Grid3X3 className="h-4 w-4" />
+        {viewAllLabel}
+      </button>
     </div>
   );
 }
 
-const allGalleryImages = [...galleryGite1, ...galleryGite2];
+/** État lightbox : un seul gîte à la fois, index dans la galerie de ce gîte. */
+type LightboxState = { gite: GiteNum; index: number };
 
 export function LogementsSection() {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [lightbox, setLightbox] = useState<LightboxState | null>(null);
+
+  const currentGallery = lightbox?.gite === 1 ? galleryGite1 : galleryGite2;
+  const total = currentGallery?.length ?? 0;
+
+  const goPrev = useCallback(() => {
+    if (lightbox === null) return;
+    const gallery = lightbox.gite === 1 ? galleryGite1 : galleryGite2;
+    const next = lightbox.index > 0 ? lightbox.index - 1 : gallery.length - 1;
+    setLightbox({ ...lightbox, index: next });
+  }, [lightbox]);
+
+  const goNext = useCallback(() => {
+    if (lightbox === null) return;
+    const gallery = lightbox.gite === 1 ? galleryGite1 : galleryGite2;
+    const next = lightbox.index < gallery.length - 1 ? lightbox.index + 1 : 0;
+    setLightbox({ ...lightbox, index: next });
+  }, [lightbox]);
 
   useEffect(() => {
-    if (lightboxIndex !== null) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
-    return () => { document.body.style.overflow = ""; };
-  }, [lightboxIndex]);
+    if (lightbox !== null) {
+      document.body.style.overflow = "hidden";
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setLightbox(null);
+        if (e.key === "ArrowLeft") goPrev();
+        if (e.key === "ArrowRight") goNext();
+      };
+      window.addEventListener("keydown", onKey);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", onKey);
+      };
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [lightbox, goPrev, goNext]);
 
   return (
     <>
@@ -89,7 +138,7 @@ export function LogementsSection() {
               Nos logements
             </h2>
             <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
-              Deux gîtes distincts, deux ambiances : choisissez celui qui vous ressemble.
+              Deux gîtes distincts, deux ambiances.
             </p>
           </div>
         </div>
@@ -97,11 +146,11 @@ export function LogementsSection() {
         {/* Bloc 1 : Les Glycines */}
         <div
           id="les-glycines"
-          className="scroll-mt-20 border-t border-border bg-background py-16 sm:py-20 lg:py-24"
+          className="scroll-mt-20 border-t border-border bg-background py-14 sm:py-16 lg:py-20"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-16 gap-10">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl lg:min-w-[45%] lg:max-w-[50%]">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted order-2 lg:order-1">
                 <Image
                   src={encodedImageSrc(logements[0].heroImage)}
                   alt={logements[0].name}
@@ -109,20 +158,21 @@ export function LogementsSection() {
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   unoptimized
+                  priority
                 />
               </div>
-              <div>
-                <span className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+              <div className="order-1 lg:order-2">
+                <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
                   Gîte 1
                 </span>
-                <h3 className="font-heading mt-1 text-2xl font-semibold sm:text-3xl">
+                <h3 className="font-heading mt-2 text-2xl font-semibold sm:text-3xl">
                   {logements[0].name}
                 </h3>
                 <p className="mt-1 text-muted-foreground">{logements[0].subtitle}</p>
-                <p className="mt-6 text-muted-foreground leading-relaxed">
+                <p className="mt-6 text-muted-foreground leading-relaxed text-sm">
                   {logements[0].summary}
                 </p>
-                <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <Users className="h-4 w-4" />
                     {logements[0].capacity.voyageurs} voyageurs
@@ -137,75 +187,60 @@ export function LogementsSection() {
                   </li>
                   <li className="flex items-center gap-2">
                     <Bath className="h-4 w-4" />
-                    {logements[0].capacity.sdb} SDB ({logements[0].capacity.sdbDetail})
+                    {logements[0].capacity.sdb} SDB
                   </li>
                 </ul>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  {logements[0].equipments.slice(0, 6).map((eq) => {
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {logements[0].equipments.slice(0, 5).map((eq) => {
                     const Icon = iconMap[eq.icon];
                     return (
                       <span
                         key={eq.label}
-                        className="inline-flex items-center gap-1.5 rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-foreground"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1 text-xs text-foreground"
                       >
-                        {Icon ? <Icon className="h-3.5 w-3.5" /> : null}
+                        {Icon ? <Icon className="h-3 w-3" /> : null}
                         {eq.label}
                       </span>
                     );
                   })}
                 </div>
-                <div className="mt-10">
-                  <Link
-                    href="#reserver"
-                    className="inline-flex h-10 items-center justify-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
-                  >
-                    Réserver Les Glycines
-                  </Link>
-                </div>
+                <Link
+                  href="#reserver"
+                  className="mt-8 inline-flex h-10 items-center justify-center rounded-full bg-foreground px-6 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
+                >
+                  Réserver Les Glycines
+                </Link>
               </div>
             </div>
-            <div className="mt-14">
-              <h4 className="font-heading text-lg font-semibold text-foreground mb-6">
-                Galerie – Les Glycines
-              </h4>
-              <LogementGallery
-                images={galleryGite1}
-                startIndex={0}
-                onOpen={setLightboxIndex}
-              />
-            </div>
+            <PreviewGrid
+              gite={1}
+              images={galleryGite1}
+              onOpenAt={(gite, index) => setLightbox({ gite, index })}
+              onViewAll={(gite) => setLightbox({ gite, index: 0 })}
+              viewAllLabel={`Voir toutes les photos (${galleryGite1.length})`}
+            />
           </div>
         </div>
 
-        {/* Bloc 2 : La Maisonnette – fond différencié */}
+        {/* Bloc 2 : La Maisonnette — texte à gauche, image à droite */}
         <div
           id="la-maisonnette"
-          className="scroll-mt-20 border-t border-border bg-muted/40 py-16 sm:py-20 lg:py-24"
+          className="scroll-mt-20 border-t border-border bg-muted/30 py-14 sm:py-16 lg:py-20"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row-reverse lg:items-center lg:gap-16 gap-10">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl lg:min-w-[45%] lg:max-w-[50%]">
-                <Image
-                  src={encodedImageSrc(logements[1].heroImage)}
-                  alt={logements[1].name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  unoptimized
-                />
-              </div>
-              <div className="lg:text-left">
-                <span className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+              <div className="order-1 lg:order-1">
+                <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
                   Gîte 2
                 </span>
-                <h3 className="font-heading mt-1 text-2xl font-semibold sm:text-3xl">
+                <h3 className="font-heading mt-2 text-2xl font-semibold sm:text-3xl">
                   {logements[1].name}
                 </h3>
                 <p className="mt-1 text-muted-foreground">{logements[1].subtitle}</p>
-                <p className="mt-6 text-muted-foreground leading-relaxed">
+                <p className="mt-6 text-muted-foreground leading-relaxed text-sm">
                   {logements[1].summary}
                 </p>
-                <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <Users className="h-4 w-4" />
                     {logements[1].capacity.voyageurs} voyageurs
@@ -220,70 +255,106 @@ export function LogementsSection() {
                   </li>
                   <li className="flex items-center gap-2">
                     <Bath className="h-4 w-4" />
-                    {logements[1].capacity.sdb} SDB ({logements[1].capacity.sdbDetail})
+                    {logements[1].capacity.sdb} SDB
                   </li>
                 </ul>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  {logements[1].equipments.slice(0, 6).map((eq) => {
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {logements[1].equipments.slice(0, 5).map((eq) => {
                     const Icon = iconMap[eq.icon];
                     return (
                       <span
                         key={eq.label}
-                        className="inline-flex items-center gap-1.5 rounded-full bg-background/80 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-background/80 px-2.5 py-1 text-xs text-foreground shadow-sm"
                       >
-                        {Icon ? <Icon className="h-3.5 w-3.5" /> : null}
+                        {Icon ? <Icon className="h-3 w-3" /> : null}
                         {eq.label}
                       </span>
                     );
                   })}
                 </div>
-                <div className="mt-10">
-                  <Link
-                    href="#reserver"
-                    className="inline-flex h-10 items-center justify-center rounded-full bg-foreground px-6 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
-                  >
-                    Réserver La Maisonnette
-                  </Link>
-                </div>
+                <Link
+                  href="#reserver"
+                  className="mt-8 inline-flex h-10 items-center justify-center rounded-full bg-foreground px-6 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
+                >
+                  Réserver La Maisonnette
+                </Link>
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted order-2 lg:order-2">
+                <Image
+                  src={encodedImageSrc(logements[1].heroImage)}
+                  alt={logements[1].name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  unoptimized
+                />
               </div>
             </div>
-            <div className="mt-14">
-              <h4 className="font-heading text-lg font-semibold text-foreground mb-6">
-                Galerie – La Maisonnette
-              </h4>
-              <LogementGallery
-                images={galleryGite2}
-                startIndex={galleryGite1.length}
-                onOpen={setLightboxIndex}
-              />
-            </div>
+            <PreviewGrid
+              gite={2}
+              images={galleryGite2}
+              onOpenAt={(gite, index) => setLightbox({ gite, index })}
+              onViewAll={(gite) => setLightbox({ gite, index: 0 })}
+              viewAllLabel={`Voir toutes les photos (${galleryGite2.length})`}
+            />
           </div>
         </div>
       </section>
 
-      {/* Lightbox commune */}
-      {lightboxIndex !== null && (
-        <button
-          type="button"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
-          onClick={() => setLightboxIndex(null)}
-          aria-label="Fermer"
+      {/* Lightbox : uniquement les photos du gîte ouvert (1 / 43 ou 1 / 41) */}
+      {lightbox !== null && (
+        <div
+          className="fixed inset-0 z-50 flex flex-col bg-black/95"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Galerie photo"
         >
-          <span className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20">
-            <X className="h-6 w-6" />
-          </span>
-          <div className="relative max-h-[90vh] max-w-4xl">
-            <Image
-              src={encodedImageSrc(allGalleryImages[lightboxIndex].src)}
-              alt={allGalleryImages[lightboxIndex].alt}
-              width={1200}
-              height={800}
-              className="max-h-[90vh] w-auto object-contain"
-              onClick={(e) => e.stopPropagation()}
-              unoptimized
-            />
+          <div className="absolute top-4 right-4 z-10">
+            <button
+              type="button"
+              onClick={() => setLightbox(null)}
+              className="rounded-full p-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label="Fermer"
+            >
+              <X className="h-6 w-6" />
+            </button>
           </div>
-        </button>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-sm text-white/80">
+            {lightbox.index + 1} / {total}
+          </div>
+          <div className="flex-1 flex items-center justify-center p-4 min-h-0">
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); goPrev(); }}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label="Photo précédente"
+            >
+              <ChevronLeft className="h-8 w-8" />
+            </button>
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); goNext(); }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label="Photo suivante"
+            >
+              <ChevronRight className="h-8 w-8" />
+            </button>
+            <div
+              className="relative max-h-full max-w-full flex items-center justify-center"
+              onClick={() => setLightbox(null)}
+            >
+              <Image
+                src={encodedImageSrc(currentGallery[lightbox.index].src)}
+                alt={currentGallery[lightbox.index].alt}
+                width={1200}
+                height={800}
+                className="max-h-[85vh] w-auto object-contain"
+                onClick={(e) => e.stopPropagation()}
+                unoptimized
+              />
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
