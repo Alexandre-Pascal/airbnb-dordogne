@@ -1,0 +1,60 @@
+================================================================================
+FICHIER : @donnees-airbnb2.txt
+================================================================================
+
+Titre de l'annonce : Gîte Périgord Sarlat piscine CHAUFFEE couverte 10m ("La maisonnette")
+Lieu : Saint-Martial-de-Nabirat, Nouvelle-Aquitaine, France (Centré sur la Dordogne)
+Hôte : Sophie (Superhôte depuis 10 ans)
+Capacité : Logement entier | 4 voyageurs | 1 chambre | 3 lits | 1 salle de bain
+
+--------------------------------------------------------------------------------
+1. ÉVALUATIONS ET STATISTIQUES
+--------------------------------------------------------------------------------
+Note globale : 4,84 / 5 (89 commentaires)
+Propreté : 4,9 | Précision : 4,8 | Arrivée : 4,9 | Communication : 4,9 | Emplacement : 4,8 | Qualité-prix : 4,8
+Distinctions : "Coup de cœur voyageurs", Excellentes évaluations des familles (100% de 5 étoiles la dernière année).
+
+--------------------------------------------------------------------------------
+2. À PROPOS DU LOGEMENT
+--------------------------------------------------------------------------------
+Maison en pierre au cœur du Périgord Noir, proche des plus beaux sites (Sarlat, Domme, La Roque Gageac, Beynac).
+Terrasse et jardin clos privatif avec salon de jardin, barbecue au charbon, fauteuils, hamac et vue discrète sur la piscine.
+Piscine couverte partagée (chauffée à 25° environ jusqu'à fin septembre, 10m x 5m). 
+Extérieurs communs : Table de ping-pong, balançoires, espace pétanque. 
+Aménagement intérieur : 
+- Rez-de-chaussée : cuisine, salle à manger/salon.
+- À l'étage : chambre mezzanine mansardée ouverte (1 lit double, 2 lits pliants simples), salle de bain (avec baignoire) et WC.
+
+Coordonnées GPS : N44.75403 E1.24011
+
+--------------------------------------------------------------------------------
+3. ÉQUIPEMENTS PRINCIPAUX
+--------------------------------------------------------------------------------
+- Extérieur : Jardin privé avec clôture intégrale, patio/balcon, piscine (dispo juin-sept, 9h-20h), barbecue, hamac, espace repas.
+- Cuisine : Entièrement équipée (réfrigérateur, congélateur, micro-ondes, lave-vaisselle ajouté en 2023, cuisinière à gaz, four, cafetière expresso, bouilloire, grille-pain, vaisselle, ustensiles, base de cuisine).
+- Confort & Linge : Lits faits à l'arrivée, serviettes, draps de bain, torchons, lave-linge dans le logement, fer à repasser, étendoir, moustiquaires, armoire de rangement.
+- Famille : Lit parapluie et chaise haute (sur demande), baignoire bébé, jeux de société.
+- Divertissement : TV, Wi-Fi.
+- Chauffage/Clim : Chauffage d'appoint (Pas de climatisation).
+- Sécurité : Détecteur de fumée (Pas de détecteur de monoxyde de carbone, pas de caméras).
+- Stationnement : Abri voiture gratuit sur place (1 place).
+- Services : Arrivée autonome (boîte à clé), Animaux acceptés, Ménage disponible pendant le séjour.
+
+--------------------------------------------------------------------------------
+4. RÈGLES ET DÉPLACEMENTS
+--------------------------------------------------------------------------------
+Déplacements : La voiture est indispensable pour visiter la région. Le gîte est dans un hameau calme à la campagne.
+
+--------------------------------------------------------------------------------
+5. DERNIERS AVIS SÉLECTIONNÉS
+--------------------------------------------------------------------------------
+- Peggie (Sept 2025) : 5/5. Environnement très calme. Hôtes accueillants avec nous et nos deux chiens. Logement propre et bien équipé. Piscine couverte très agréable.
+- Jean Michel (Août 2025) : 5/5. Très pratique pour une famille, très bien équipé, super piscine. Beaucoup de visites à 20 min.
+- Laurence (Août 2025) : 5/5. Logement pépite ! Joli jardin clos, rien ne manque, très fonctionnel et propre. Grande piscine couverte très appréciable.
+- Laetitia (Juil 2025) : 5/5. Très propre, au calme, sans vis-à-vis, tranquillité absolue.
+- Yves (Juin 2025) : 5/5. Petit jardinet clos idéal pour les animaux. Tout est prévu. Hôte très réactive.
+- Lucile (Août 2025) : 5/5. Très bon séjour à 4 avec un chien, jardin bien clôturé.
+
+================================================================================
+FIN DU FICHIER
+================================================================================

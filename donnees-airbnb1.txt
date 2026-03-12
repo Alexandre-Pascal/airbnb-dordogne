@@ -1,0 +1,59 @@
+================================================================================
+FICHIER : @donnees-airbnb1.txt
+================================================================================
+
+Titre de l'annonce : Gîte Sarlat Périgord piscine chauffée couverte 10m ("Les glycines")
+Lieu : Saint-Martial-de-Nabirat, Nouvelle-Aquitaine, France (Centré sur la Dordogne)
+Hôte : Sophie (Superhôte depuis 10 ans, Taux de réponse : 100% dans l'heure)
+Capacité : Logement entier | 4 voyageurs | 2 chambres | 3 lits | 1 salle de bain
+
+--------------------------------------------------------------------------------
+1. ÉVALUATIONS ET STATISTIQUES
+--------------------------------------------------------------------------------
+Note globale : 4,88 / 5 (68 commentaires)
+Propreté : 5,0 | Précision : 4,9 | Arrivée : 4,9 | Communication : 5,0 | Emplacement : 5,0 | Qualité-prix : 4,8
+Distinction : "Coup de cœur voyageurs", Excellentes évaluations des familles (100% de 5 étoiles la dernière année).
+
+--------------------------------------------------------------------------------
+2. À PROPOS DU LOGEMENT
+--------------------------------------------------------------------------------
+En plein cœur du Périgord Noir, proche des plus beaux sites (Sarlat, Domme, Beynac). 
+Terrasse et jardin clos équipé (salon de jardin, barbecue au charbon, 4 fauteuils, hamac).
+Piscine couverte partagée (chauffée à 25° minimum jusqu'à fin septembre, 10m x 5m). 
+Extérieurs : Table de ping pong, balançoires, espace pétanque. Accès privatif avec stationnement sécurisé.
+Intérieur : Belle pièce à vivre, 1 chambre double, 1 chambre avec 2 lits simples (refaites en 2021), salle de douche avec WC. 
+Accessibilité : 4 marches pour la terrasse, 7 marches pour le gîte.
+
+Coordonnées GPS : N44.75403 E1.24011
+
+--------------------------------------------------------------------------------
+3. ÉQUIPEMENTS PRINCIPAUX
+--------------------------------------------------------------------------------
+- Extérieur : Jardin privé clôturé, terrasse/patio, piscine (dispo juin-sept, 9h-20h), barbecue, hamac, mobilier d'extérieur.
+- Cuisine : Entièrement équipée (réfrigérateur, congélateur, micro-ondes, lave-vaisselle, cuisinière, four, cafetière expresso, bouilloire, grille-pain, vaisselle, ustensiles, base de cuisine).
+- Confort & Linge : Lits faits à l'arrivée, serviettes, draps de bain, torchons, lave-linge, fer à repasser, étendoir, moustiquaires, espace de rangement.
+- Famille : Lit parapluie et chaise haute (sur demande), baignoire bébé, jeux de société.
+- Divertissement : TV, Wi-Fi.
+- Chauffage/Clim : Ventilateurs portables, chauffage radiant (Pas de climatisation).
+- Sécurité : Détecteur de fumée (Pas de détecteur de monoxyde de carbone, pas de caméras).
+- Stationnement : Gratuit sur place.
+- Services : Arrivée autonome (boîte à clé), Animaux acceptés.
+
+--------------------------------------------------------------------------------
+4. RÈGLES ET DÉPLACEMENTS
+--------------------------------------------------------------------------------
+Déplacements : La voiture est indispensable pour visiter la région. Le gîte est dans un hameau calme à la campagne.
+
+--------------------------------------------------------------------------------
+5. DERNIERS AVIS SÉLECTIONNÉS
+--------------------------------------------------------------------------------
+- Joël (Sept 2025) : 5/5. Très content du séjour dans ce gîte au calme.
+- Ramdane (Août 2025) : 5/5. Hôtes très réactifs et accueillants. Maison bien équipée, lieu calme, moustiquaires appréciées.
+- Stéphanie (Juil 2025) : 5/5. Logement bien entretenu. Draps fournis appréciables. Jardin chouette et grande piscine couverte (un gros plus quand il fait frais).
+- Patrice (Mai 2025) : 5/5. Très propre, environnement verdoyant et tranquille. Belle piscine chauffée. Excellent rapport qualité/prix.
+- Tricia (Mai 2025) : 5/5. Très propre, bien situé, parking facile. Piscine couverte très appréciable en mai. 
+- Bernard (Mai 2025) : 4/5. Agréable séjour, jardin et piscine sont des plus. Petit défaut : literie pas très confortable et manque de rangements (cuisine, sdb).
+
+================================================================================
+FIN DU FICHIER
+================================================================================
