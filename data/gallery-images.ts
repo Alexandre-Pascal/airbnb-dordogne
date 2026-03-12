@@ -1,0 +1,23 @@
+/** Chemins des images pour la galerie (mélange img-airbnb1 et img-airbnb2). */
+export const galleryImages: { src: string; alt: string }[] = [
+  { src: "/images/img-airbnb1/750badad-1e27-4ca0-b2b1-37e5c00d48d6.avif", alt: "Extérieur gîte Périgord" },
+  { src: "/images/img-airbnb2/981a3971-9af3-40b4-ad7d-18e262b3e77f.avif", alt: "Maison en pierre" },
+  { src: "/images/img-airbnb1/80caae18-fe99-4498-82ce-1efbf4c2c779.webp", alt: "Piscine et jardin" },
+  { src: "/images/img-airbnb2/2f56797b-4d9e-46f8-82fc-9c5a15f127c0.avif", alt: "Salon et pièce à vivre" },
+  { src: "/images/img-airbnb1/3b444613-d446-4b30-8f1f-649e40a7f00d.avif", alt: "Terrasse" },
+  { src: "/images/img-airbnb2/e4c2512c-1bfe-44a3-82f2-a4c317266786.avif", alt: "Chambre" },
+  { src: "/images/img-airbnb1/4ef9aa2b-c5bc-46af-9733-1375a3f2de97.avif", alt: "Jardin" },
+  { src: "/images/img-airbnb2/e53feb5d-7038-4b1f-aadb-45efe3d926d8.avif", alt: "Piscine couverte" },
+  { src: "/images/img-airbnb1/67998630-916c-458b-af55-d9ca6c1d42db.avif", alt: "Détail extérieur" },
+  { src: "/images/img-airbnb2/c711c80b-6e65-4233-8325-e41f384ec118.avif", alt: "Cuisine" },
+  { src: "/images/img-airbnb1/19e0317a-e2f3-4ebb-97a4-161b9bd7ae09.avif", alt: "Vue domaine" },
+  { src: "/images/img-airbnb2/705f4479-0dd8-453d-9772-27a860e53390.avif", alt: "Espace détente" },
+  { src: "/images/img-airbnb1/4c7dc855-ebc6-4a2f-bc07-785029f19034.avif", alt: "Façade" },
+  { src: "/images/img-airbnb2/e1f5979d-675a-4558-9c9a-e124c398f667.avif", alt: "Séjour" },
+  { src: "/images/img-airbnb1/d6f08344-c5d8-4d01-b1c2-fcbfdfd4b332.avif", alt: "Piscine" },
+  { src: "/images/img-airbnb2/6a85f619-6f86-4d65-b21b-0f078ba65ae0.avif", alt: "Intérieur" },
+  { src: "/images/img-airbnb1/19e0317a-e2f3-4ebb-97a4-161b9bd7ae09.avif", alt: "Jardin clos" },
+  { src: "/images/img-airbnb2/2eda0ea2-b9d2-41d6-a706-d381598f0a3d.avif", alt: "Terrasse" },
+  { src: "/images/img-airbnb2/543ad0b5-03c1-4b76-9d0f-8041093eb798.avif", alt: "Détail" },
+  { src: "/images/img-airbnb2/8cfa373d-833a-46aa-a460-2f2990eff53b.avif", alt: "Vue" },
+];
