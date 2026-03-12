@@ -17,18 +17,18 @@ export function Footer() {
             </p>
             <div className="mt-6 space-y-3">
               <a
-                href="mailto:contact@gites-perigord.fr"
+                href="mailto:locationlagreze@gmail.com"
                 className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 <Mail className="h-4 w-4 shrink-0" />
-                contact@gites-perigord.fr
+                locationlagreze@gmail.com
               </a>
               <a
-                href="tel:+33000000000"
+                href="tel:+33652420271"
                 className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 <Phone className="h-4 w-4 shrink-0" />
-                00 00 00 00 00
+                06 52 42 02 71
               </a>
               <a
                 href="https://www.google.com/maps?q=44.75403,1.24011"
@@ -42,7 +42,9 @@ export function Footer() {
             </div>
             <div className="mt-6 flex gap-4">
               <a
-                href="#"
+                href="https://www.facebook.com/share/1GDGx2CpKA/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="Facebook"
               >

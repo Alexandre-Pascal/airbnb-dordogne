@@ -14,6 +14,7 @@ export interface Logement {
   };
   equipments: { label: string; icon: string }[];
   heroImage: string;
+  airbnbUrl: string;
 }
 
 export const logements: Logement[] = [
@@ -41,6 +42,7 @@ export const logements: Logement[] = [
       { label: "Parking gratuit", icon: "Car" },
     ],
     heroImage: "/images/img-airbnb1/Gîte Sarlat Périgord Piscine 10m (12).avif",
+    airbnbUrl: "https://www.airbnb.fr/rooms/14833733?guests=1&adults=2&children=2&s=67",
   },
   {
     id: "la-maisonnette",
@@ -66,5 +68,6 @@ export const logements: Logement[] = [
       { label: "Abri voiture 1 place", icon: "Car" },
     ],
     heroImage: "/images/img-airbnb2/Gîte Périgord Sarlat Piscine (4).avif",
+    airbnbUrl: "https://www.airbnb.fr/rooms/14286127?guests=1&adults=2&children=2&s=67",
   },
 ];

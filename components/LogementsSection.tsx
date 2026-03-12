@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   TreePine,
   Flame,
@@ -20,7 +19,10 @@ import {
   ChevronLeft,
   ChevronRight,
   Grid3X3,
+  ExternalLink,
+  Send,
 } from "lucide-react";
+import Link from "next/link";
 import { logements } from "@/data/logements";
 import {
   galleryGite1,
@@ -207,12 +209,24 @@ export function LogementsSection() {
                     );
                   })}
                 </div>
-                <Link
-                  href="#reserver"
-                  className="mt-8 inline-flex h-10 items-center justify-center rounded-full bg-foreground px-6 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
-                >
-                  Réserver Les Glycines
-                </Link>
+                <div className="mt-8 flex flex-nowrap items-center gap-3 overflow-x-auto pb-1">
+                  <a
+                    href={logements[0].airbnbUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex shrink-0 h-10 items-center justify-center gap-2 rounded-full bg-[#FF5A5F] px-5 text-sm font-medium text-white hover:bg-[#E00007] transition-colors"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Réserver sur Airbnb – Les Glycines
+                  </a>
+                  <Link
+                    href="#reserver"
+                    className="inline-flex shrink-0 h-10 items-center justify-center gap-2 rounded-full border-2 border-foreground/20 bg-transparent px-5 text-sm font-medium text-foreground hover:bg-foreground/5 transition-colors"
+                  >
+                    <Send className="h-4 w-4" />
+                    Réservation directe
+                  </Link>
+                </div>
               </div>
             </div>
             <PreviewGrid
@@ -274,12 +288,24 @@ export function LogementsSection() {
                     );
                   })}
                 </div>
-                <Link
-                  href="#reserver"
-                  className="mt-8 inline-flex h-10 items-center justify-center rounded-full bg-foreground px-6 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
-                >
-                  Réserver La Maisonnette
-                </Link>
+                <div className="mt-8 flex flex-nowrap items-center gap-3 overflow-x-auto pb-1">
+                  <a
+                    href={logements[1].airbnbUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex shrink-0 h-10 items-center justify-center gap-2 rounded-full bg-[#FF5A5F] px-5 text-sm font-medium text-white hover:bg-[#E00007] transition-colors"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Réserver sur Airbnb – La Maisonnette
+                  </a>
+                  <Link
+                    href="#reserver"
+                    className="inline-flex shrink-0 h-10 items-center justify-center gap-2 rounded-full border-2 border-foreground/20 bg-transparent px-5 text-sm font-medium text-foreground hover:bg-foreground/5 transition-colors"
+                  >
+                    <Send className="h-4 w-4" />
+                    Réservation directe
+                  </Link>
+                </div>
               </div>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted order-2 lg:order-2">
                 <Image
