@@ -35,9 +35,7 @@ export function ReservationSection() {
   });
 
   const nights =
-    range?.from && range?.to
-      ? differenceInDays(range.to, range.from)
-      : 0;
+    range?.from && range?.to ? differenceInDays(range.to, range.from) : 0;
   const isRangeValid = nights >= MIN_NIGHTS;
 
   const handleRangeSelect = (newRange: DateRange | undefined) => {
@@ -59,7 +57,9 @@ export function ReservationSection() {
       const n = differenceInDays(newRange.to, newRange.from);
       if (n < MIN_NIGHTS) {
         setRange({ from: newRange.from, to: undefined });
-        setRangeError(`Séjour minimum : ${MIN_NIGHTS} nuits (samedi au samedi). Choisissez le samedi suivant ou plus.`);
+        setRangeError(
+          `Séjour minimum : ${MIN_NIGHTS} nuits (samedi au samedi). Choisissez le samedi suivant ou plus.`,
+        );
         return;
       }
     }
@@ -69,7 +69,11 @@ export function ReservationSection() {
   const isDateDisabled = (date: Date) => {
     if (!range?.from) return !isSaturday(date);
     const minTo = addDays(range.from, MIN_NIGHTS);
-    return !isSaturday(date) || date < minTo || date.getTime() === range.from.getTime();
+    return (
+      !isSaturday(date) ||
+      date < minTo ||
+      date.getTime() === range.from.getTime()
+    );
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -89,10 +93,11 @@ export function ReservationSection() {
             Demande de réservation
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
-            Séjour minimum : 7 nuits, uniquement du samedi au samedi. Ce formulaire
-            constitue une demande de réservation. Nous vous recontacterons par
-            email pour confirmer la disponibilité, le tarif exact et vous
-            transmettre notre RIB pour bloquer votre séjour par virement.
+            Séjour minimum : 7 nuits, uniquement du samedi au samedi. Ce
+            formulaire constitue une demande de réservation. Nous vous
+            recontacterons par email pour confirmer la disponibilité, le tarif
+            exact et vous transmettre notre RIB pour bloquer votre séjour par
+            virement.
           </p>
         </div>
 
@@ -102,7 +107,7 @@ export function ReservationSection() {
             <p className="mt-1 text-sm text-muted-foreground">
               Arrivée et départ le samedi (séjour minimum 7 nuits)
             </p>
-            <div className="mt-4 w-full sm:w-auto rounded-xl border border-border p-4">
+            <div className="mt-4 w-full sm:w-auto rounded-xl border border-border p-4 max-sm:max-h-[min(20rem,60vh)] max-sm:overflow-y-auto max-sm:overscroll-contain">
               <Calendar
                 mode="range"
                 selected={range}
