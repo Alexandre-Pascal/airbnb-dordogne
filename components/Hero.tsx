@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Grande photo piscine couverte / vue domaine (la plus spectaculaire)
-const HERO_IMAGE = "/images/img-airbnb1/Gîte Sarlat Piscine Couverte (1).avif";
+const HERO_IMAGE =
+  "/images/img-airbnb1/Gîte Sarlat Périgord Piscine 10m (16).avif";
 
 export function Hero() {
   return (

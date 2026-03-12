@@ -2,8 +2,9 @@ import Image from "next/image";
 import { Waves, TreePine } from "lucide-react";
 import { encodedImageSrc } from "@/lib/image-utils";
 
-const PISCINE_IMAGE = "/images/img-airbnb1/Gîte Sarlat Périgord Piscine Couverte (4).avif";
-const JARDIN_IMAGE = "/images/img-airbnb1/4ef9aa2b-c5bc-46af-9733-1375a3f2de97.avif";
+const PISCINE_IMAGE = "/images/img-airbnb1/Gîte Sarlat Périgord Piscine 10m (25).avif";
+const INTIMITE_GITE1 = "/images/img-airbnb1/Gîte Sarlat Piscine Couverte (1).avif";
+const INTIMITE_GITE2 = "/images/img-airbnb2/Gîte Périgord Sarlat piscine couverte (4).avif";
 
 export function ExperienceSection() {
   return (
@@ -53,14 +54,31 @@ export function ExperienceSection() {
           </div>
 
           <div className="overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-foreground/5">
-            <div className="relative aspect-[16/10]">
-              <Image
-                src={JARDIN_IMAGE}
-                alt="Jardin privatif sans vis-à-vis"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
+            <div className="grid grid-cols-2 gap-2 p-2 sm:p-3">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
+                <Image
+                  src={encodedImageSrc(INTIMITE_GITE1)}
+                  alt="Jardin privatif du gîte 1 – Les Glycines"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                />
+                <span className="absolute bottom-2 left-2 rounded-md bg-black/60 px-2 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                  Gîte 1
+                </span>
+              </div>
+              <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
+                <Image
+                  src={encodedImageSrc(INTIMITE_GITE2)}
+                  alt="Jardin privatif du gîte 2 – La Maisonnette"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                />
+                <span className="absolute bottom-2 left-2 rounded-md bg-black/60 px-2 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                  Gîte 2
+                </span>
+              </div>
             </div>
             <div className="p-8 sm:p-10">
               <div className="flex items-center gap-3">

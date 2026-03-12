@@ -40,7 +40,7 @@ export const logements: Logement[] = [
       { label: "Animaux acceptés", icon: "Dog" },
       { label: "Parking gratuit", icon: "Car" },
     ],
-    heroImage: "/images/img-airbnb1/Gîte Sarlat Périgord Piscine 10m (1).avif",
+    heroImage: "/images/img-airbnb1/Gîte Sarlat Périgord Piscine 10m (12).avif",
   },
   {
     id: "la-maisonnette",

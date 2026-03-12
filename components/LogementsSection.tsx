@@ -22,7 +22,11 @@ import {
   Grid3X3,
 } from "lucide-react";
 import { logements } from "@/data/logements";
-import { galleryGite1, galleryGite2, type GalleryImage } from "@/data/gallery-images";
+import {
+  galleryGite1,
+  galleryGite2,
+  type GalleryImage,
+} from "@/data/gallery-images";
 import { encodedImageSrc } from "@/lib/image-utils";
 
 const PREVIEW_COUNT = 8;
@@ -162,13 +166,12 @@ export function LogementsSection() {
                 />
               </div>
               <div className="order-1 lg:order-2">
-                <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                  Gîte 1
-                </span>
                 <h3 className="font-heading mt-2 text-2xl font-semibold sm:text-3xl">
                   {logements[0].name}
                 </h3>
-                <p className="mt-1 text-muted-foreground">{logements[0].subtitle}</p>
+                <p className="mt-1 text-muted-foreground">
+                  {logements[0].subtitle}
+                </p>
                 <p className="mt-6 text-muted-foreground leading-relaxed text-sm">
                   {logements[0].summary}
                 </p>
@@ -230,13 +233,12 @@ export function LogementsSection() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               <div className="order-1 lg:order-1">
-                <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                  Gîte 2
-                </span>
                 <h3 className="font-heading mt-2 text-2xl font-semibold sm:text-3xl">
                   {logements[1].name}
                 </h3>
-                <p className="mt-1 text-muted-foreground">{logements[1].subtitle}</p>
+                <p className="mt-1 text-muted-foreground">
+                  {logements[1].subtitle}
+                </p>
                 <p className="mt-6 text-muted-foreground leading-relaxed text-sm">
                   {logements[1].summary}
                 </p>
@@ -325,7 +327,10 @@ export function LogementsSection() {
           <div className="flex-1 flex items-center justify-center p-4 min-h-0">
             <button
               type="button"
-              onClick={(e) => { e.stopPropagation(); goPrev(); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                goPrev();
+              }}
               className="absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors"
               aria-label="Photo précédente"
             >
@@ -333,7 +338,10 @@ export function LogementsSection() {
             </button>
             <button
               type="button"
-              onClick={(e) => { e.stopPropagation(); goNext(); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                goNext();
+              }}
               className="absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full p-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors"
               aria-label="Photo suivante"
             >
