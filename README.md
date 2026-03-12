@@ -66,14 +66,25 @@ Les images des gîtes sont dans `public/images/img-airbnb1/` et `img-airbnb2/`. 
 
 ## Envoi d'emails (réservation)
 
-Le formulaire envoie les demandes par email via **Resend**. En local, créez un fichier `.env.local` (ou renommez `.env.dev` en `.env.local`) avec :
+Le système d'emails est en place avec **Resend** :
+
+- **Email au responsable des gîtes** : à chaque envoi du formulaire, vous recevez un email avec toutes les infos (nom, email, téléphone, logement, nombre de voyageurs, dates, message).
+- **Email de confirmation au client** : le client reçoit un email lui confirmant que sa demande a bien été reçue.
+
+En local, créez un fichier `.env.local` avec :
 
 - `RESEND_API_KEY` — clé API Resend (compte sur [resend.com](https://resend.com))
 - `RESERVATION_EMAIL` — adresse qui reçoit les demandes (ex. `locationlagreze@gmail.com`)
 - `FROM_NAME` — (optionnel) nom affiché comme expéditeur (défaut : « Gîtes Périgord »)
-- `FROM_EMAIL` — (optionnel) adresse expéditrice ; sans domaine vérifié dans Resend, seule `onboarding@resend.dev` est utilisée ; après vérification de votre domaine, mettez ex. `contact@votredomaine.fr`
+- `FROM_EMAIL` — (optionnel) adresse expéditrice ; sans domaine vérifié dans Resend, seule `onboarding@resend.dev` est utilisée.
 
 Sur **Vercel** : ajoutez les mêmes variables dans **Project → Settings → Environment Variables** pour que l'envoi fonctionne en production.
+
+---
+
+## À venir
+
+Il reste à **synchroniser le calendrier Airbnb avec le calendrier du site** (disponibilités, réservations) pour que la chaîne soit complète.
 
 ---
 
