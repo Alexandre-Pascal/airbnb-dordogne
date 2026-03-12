@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gîtes Périgord — Site vitrine
 
-## Getting Started
+Site vitrine pour **Les Glycines** et **La Maisonnette**, deux gîtes de charme à Saint-Martial-de-Nabirat, au cœur du Périgord Noir (Dordogne).
 
-First, run the development server:
+**→ [Voir le site en ligne](https://gite-perigord.vercel.app/)**
+
+---
+
+## Aperçu
+
+- **Hero** avec image et accroche
+- **Nos logements** : fiches détaillées par gîte (capacité, équipements, galerie photos, réservation Airbnb ou directe)
+- **L’expérience du domaine** : espaces communs (piscine) et intimité (jardins privés)
+- **La région** : activités et environs (Sarlat, Domme, Beynac…)
+- **Contact / Réservation** : formulaire de demande, calendrier (séjour minimum 7 nuits, samedi–samedi), liens Airbnb et profil
+
+---
+
+## Stack
+
+| Techno        | Usage                    |
+|---------------|--------------------------|
+| **Next.js 16**| App Router, React 19     |
+| **TypeScript**| Typage                   |
+| **Tailwind CSS 4** | Styles, responsive  |
+| **shadcn / Base UI** | Composants (boutons, formulaire, calendrier) |
+| **date-fns**  | Dates (calendrier résa)  |
+| **Lucide**    | Icônes                   |
+
+Polices : **Playfair Display** (titres), **DM Sans** (texte).
+
+---
+
+## Démarrage
 
 ```bash
+# Installer les dépendances
+npm install
+
+# Lancer en développement (http://localhost:3000)
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build de production
+npm run build
+
+# Lancer la version buildée
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure du projet
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── app/              # Pages, layout, métadonnées, globals
+├── components/       # Header, Footer, sections (Hero, Logements, Expérience, Région, Réservation), UI
+├── data/             # Données (logements, région, galerie images)
+├── lib/              # Utilitaires (images avec caractères spéciaux, etc.)
+├── public/           # Images, favicon, logo, manifest
+└── docs/             # Notes (ex. prompt logo)
+```
 
-## Learn More
+Les images des gîtes sont dans `public/images/img-airbnb1/` et `img-airbnb2/`. Les noms avec espaces ou accents sont gérés via `encodedImageSrc()` (`lib/image-utils.ts`).
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Déploiement
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Le projet est prêt pour un déploiement sur **Vercel** (ou tout hébergeur Node) :
 
-## Deploy on Vercel
+- Build : `npm run build`
+- Aucune variable d’environnement requise pour le site actuel (formulaire en démo, pas d’envoi d’email côté serveur)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Licence
+
+Projet privé — © Gîtes Périgord Noir.
