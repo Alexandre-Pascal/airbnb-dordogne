@@ -47,10 +47,10 @@ export function ReservationSection() {
             Demande de réservation
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
-            Sélectionnez vos dates. Ce formulaire constitue une demande de
-            réservation. Nous vous recontacterons par email pour confirmer la
-            disponibilité, le tarif exact et vous transmettre notre RIB pour
-            bloquer votre séjour par virement.
+            Séjour minimum : 7 nuits. Sélectionnez vos dates. Ce formulaire
+            constitue une demande de réservation. Nous vous recontacterons par
+            email pour confirmer la disponibilité, le tarif exact et vous
+            transmettre notre RIB pour bloquer votre séjour par virement.
           </p>
         </div>
 
@@ -58,7 +58,8 @@ export function ReservationSection() {
           <div className="lg:col-span-2">
             <Label className="text-base font-medium">Vos dates</Label>
             <p className="mt-1 text-sm text-muted-foreground">
-              Choisissez votre date d&apos;arrivée et de départ
+              Choisissez votre date d&apos;arrivée et de départ (séjour minimum 7
+              nuits)
             </p>
             <Calendar
               mode="range"
