@@ -2,9 +2,12 @@ import Image from "next/image";
 import { Waves, TreePine } from "lucide-react";
 import { encodedImageSrc } from "@/lib/image-utils";
 
-const PISCINE_IMAGE = "/images/img-airbnb1/Gîte Sarlat Périgord Piscine 10m (25).avif";
-const INTIMITE_GITE1 = "/images/img-airbnb1/Gîte Sarlat Piscine Couverte (1).avif";
-const INTIMITE_GITE2 = "/images/img-airbnb2/Gîte Périgord Sarlat piscine couverte (4).avif";
+const PISCINE_IMAGE =
+  "/images/img-airbnb1/Gîte Sarlat Périgord Piscine 10m (25).avif";
+const INTIMITE_GITE1 =
+  "/images/img-airbnb1/Gîte Sarlat Piscine Couverte (1).avif";
+const INTIMITE_GITE2 =
+  "/images/img-airbnb2/Gîte Périgord Sarlat piscine couverte (4).avif";
 
 export function ExperienceSection() {
   return (
@@ -44,11 +47,11 @@ export function ExperienceSection() {
                 </h3>
               </div>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                Une piscine couverte de 10 m × 5 m, chauffée à 25 °C jusqu&apos;à
-                fin septembre, pour profiter de l&apos;eau en toute saison. Autour,
-                la cour commune accueille une table de ping-pong, des
-                balançoires et un espace pétanque. De quoi réunir petits et grands
-                dans une ambiance détendue.
+                Une piscine couverte de 10 m × 5 m, chauffée à 25 °C
+                jusqu&apos;à fin septembre, pour profiter de l&apos;eau en toute
+                saison. Autour, la cour commune accueille une table de
+                ping-pong, des balançoires et un espace pétanque. De quoi réunir
+                petits et grands dans une ambiance détendue.
               </p>
             </div>
           </div>
@@ -58,25 +61,25 @@ export function ExperienceSection() {
               <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
                 <Image
                   src={encodedImageSrc(INTIMITE_GITE1)}
-                  alt="Jardin privatif du gîte 1 – Les Glycines"
+                  alt="Jardin privatif des Glycines"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 50vw, 25vw"
                 />
                 <span className="absolute bottom-2 left-2 rounded-md bg-black/60 px-2 py-1 text-xs font-medium text-white backdrop-blur-sm">
-                  Gîte 1
+                  Les Glycines
                 </span>
               </div>
               <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
                 <Image
                   src={encodedImageSrc(INTIMITE_GITE2)}
-                  alt="Jardin privatif du gîte 2 – La Maisonnette"
+                  alt="Jardin privatif de La Maisonnette"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 50vw, 25vw"
                 />
                 <span className="absolute bottom-2 left-2 rounded-md bg-black/60 px-2 py-1 text-xs font-medium text-white backdrop-blur-sm">
-                  Gîte 2
+                  La Maisonnette
                 </span>
               </div>
             </div>
@@ -92,9 +95,8 @@ export function ExperienceSection() {
               <p className="mt-4 text-muted-foreground leading-relaxed">
                 Chaque gîte dispose de son propre jardin clos et privatif, sans
                 vis-à-vis. Terrasse, salon de jardin, barbecue et hamac vous
-                offrent un coin de tranquillité dédié. Vous profitez des
-                espaces communs quand vous le souhaitez, tout en gardant votre
-                bulle.
+                offrent un coin de tranquillité dédié. Vous profitez des espaces
+                communs quand vous le souhaitez, tout en gardant votre bulle.
               </p>
             </div>
           </div>
