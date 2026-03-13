@@ -98,6 +98,12 @@ Il reste à **synchroniser le calendrier Airbnb avec le calendrier du site** (di
 
 ---
 
+## Analytics
+
+**Google Analytics 4 (GA4)** est intégré pour suivre les visites, la rétention et le comportement des utilisateurs. Le composant `GoogleAnalytics` est chargé dans le layout ; l’ID de mesure (ex. `G-0EGDXBH19C`) est défini dans le code. Pour le surcharger (ex. autre propriété GA), définir `NEXT_PUBLIC_GA_MEASUREMENT_ID` dans `.env.local` ou sur Vercel.
+
+---
+
 ## Déploiement
 
 Le projet est déployé sur **Vercel** :
