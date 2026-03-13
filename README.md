@@ -2,7 +2,7 @@
 
 Site vitrine pour **Les Glycines** et **La Maisonnette**, deux gîtes de charme à Saint-Martial-de-Nabirat, au cœur du Périgord Noir (Dordogne).
 
-**→ [Voir le site en ligne](https://gite-perigord.vercel.app/)**
+**→ [Voir le site en ligne](https://giteperigord.net)** (domaine personnalisé) · [gite-perigord.vercel.app](https://gite-perigord.vercel.app/) (URL Vercel)
 
 ---
 
@@ -90,12 +90,20 @@ Il reste à **synchroniser le calendrier Airbnb avec le calendrier du site** (di
 
 ---
 
+## Domaine et hébergement
+
+- **Nom de domaine** : **giteperigord.net** — acheté et relié au projet Vercel (Settings → Domains). Le site est accessible à l’adresse personnalisée.
+- **Hébergement** : **Vercel** — déploiement automatique à chaque push sur la branche principale. L’URL par défaut (gite-perigord.vercel.app) reste disponible.
+- **Emails** : le domaine est vérifié dans **Resend** pour envoyer les demandes de réservation et la confirmation client depuis une adresse @giteperigord.net (ex. reservation@giteperigord.net).
+
+---
+
 ## Déploiement
 
-Le projet est prêt pour un déploiement sur **Vercel** (ou tout hébergeur Node) :
+Le projet est déployé sur **Vercel** :
 
 - Build : `npm run build`
-- Variables d'environnement : `RESEND_API_KEY` et `RESERVATION_EMAIL` pour l'envoi des demandes de réservation.
+- Variables d'environnement : `RESEND_API_KEY`, `RESERVATION_EMAIL`, et optionnellement `FROM_EMAIL` (ex. reservation@giteperigord.net) pour l'envoi des demandes de réservation.
 
 ---
 
