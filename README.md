@@ -78,6 +78,8 @@ En local, créez un fichier `.env.local` avec :
 - `FROM_NAME` — (optionnel) nom affiché comme expéditeur (défaut : « Gîtes Périgord »)
 - `FROM_EMAIL` — (optionnel) adresse expéditrice ; sans domaine vérifié dans Resend, seule `onboarding@resend.dev` est utilisée.
 
+**Important** : sans domaine vérifié, Resend n’autorise l’envoi **qu’à l’adresse email du compte** (celle utilisée sur resend.com). Pour envoyer au responsable des gîtes (si différent) et la confirmation aux clients, il faut **vérifier un domaine** sur [resend.com/domains](https://resend.com/domains), puis utiliser une adresse de ce domaine dans `FROM_EMAIL` et `RESERVATION_EMAIL`.
+
 Sur **Vercel** : ajoutez les mêmes variables dans **Project → Settings → Environment Variables** pour que l'envoi fonctionne en production.
 
 ---

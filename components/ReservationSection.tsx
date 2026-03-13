@@ -100,12 +100,17 @@ export function ReservationSection() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setSubmitError(data.error ?? "Une erreur est survenue. Réessayez ou contactez-nous par téléphone.");
+        setSubmitError(
+          data.error ??
+            "Une erreur est survenue. Réessayez ou contactez-nous par téléphone.",
+        );
         return;
       }
       setSubmitted(true);
     } catch {
-      setSubmitError("Impossible d'envoyer la demande. Vérifiez votre connexion ou contactez-nous par téléphone.");
+      setSubmitError(
+        "Impossible d'envoyer la demande. Vérifiez votre connexion ou contactez-nous par téléphone.",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -250,7 +255,7 @@ export function ReservationSection() {
                       onChange={(e) =>
                         setFormData((p) => ({ ...p, guests: e.target.value }))
                       }
-                      placeholder="4"
+                      placeholder="0"
                       className="rounded-lg"
                     />
                   </div>
