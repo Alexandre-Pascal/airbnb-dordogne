@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -42,6 +43,7 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${dmSans.variable} font-sans antialiased`}
       >
+        <GoogleAnalytics />
         <Header />
         {children}
         <Footer />
